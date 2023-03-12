@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Social Network</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body>
+
 <?php
 // Start the session
 session_start();
@@ -30,13 +38,16 @@ if (isset($_SESSION['user_email'])) {
     }
 
     // Display the welcome message and logout button
+    echo "<div class='header'>";
     echo "<h1>Welcome, $user_email!</h1>";
     echo "<form action='logout.php' method='post'><input type='submit' value='Log out'></form>";
+    echo "</div>";
 
-    // Display the status form
-    echo "<h2>Add a new status:</h2>";
+    // Display the new post form
+    echo "<div class='new-post'>";
+    echo "<h2>Add a new post:</h2>";
     echo "<form action='' method='post'>";
-    echo "<label for='status_text'>Status text:</label>";
+    echo "<label for='status_text'>Post text:</label>";
     echo "<input type='text' id='status_text' name='status_text' required>";
     echo "<br>";
     echo "<label for='status_privacy'>Private:</label>";
@@ -44,8 +55,11 @@ if (isset($_SESSION['user_email'])) {
     echo "<br>";
     echo "<input type='submit' value='Post'>";
     echo "</form>";
+    echo "</div>";
 
-    // Display the timeline
+    // Display the timeline statuses
+    echo "<div class='content-container'>";
+    echo "<div class='left-column'>";
     echo "<h2>Your timeline:</h2>";
     $timeline_query = "SELECT * FROM status WHERE user_email='$user_email'";
     $timeline_result = mysqli_query($conn, $timeline_query);
@@ -54,12 +68,44 @@ if (isset($_SESSION['user_email'])) {
         echo "<p class='status-text'>" . $row['status_text'] . "</p>";
         echo "</div>";
     }
+    echo "</div>";
+
+    // Display the public statuses column
+    echo "<div class='right-column'>";
+    echo "<h2>Public statuses:</h2>";
+    $public_statuses_query = "SELECT * FROM status WHERE status_privacy=1";
+    $public_statuses_result = mysqli_query($conn, $public_statuses_query);
+    while ($row = mysqli_fetch_assoc($public_statuses_result)) {
+        echo "<div class='status public'>";
+        echo "<p class='status-text'>" . $row['status_text'] . "</p>";
+        echo "<p class='status-user'>" . $row['user_email'] . "</p>";
+        echo "</div>";
+    }
+    echo "</div>";
+
+    // Display the public statuses column
+//    echo "<div class='public-statuses'>";
+//    echo "<h2>Public statuses:</h2>";
+//    $public_statuses_query = "SELECT * FROM status WHERE status_privacy=1";
+//    $public_statuses_result = mysqli_query($conn, $public_statuses_query);
+//    while ($row = mysqli_fetch_assoc($public_statuses_result)) {
+//        echo "<div class='status public'>";
+//        echo "<p class='status-text'>" . $row['status_text'] . "</p>";
+//        echo "<p class='status-user'>" . $row['user_email'] . "</p>";
+//        echo "</div>";
+//    }
+//    echo "</div>";
 
     // Close the database connection
     mysqli_close($conn);
 
 } else {
     // User is not logged in, redirect to the login page
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
+?>
+
+</body>
+</html>
+

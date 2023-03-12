@@ -1,3 +1,4 @@
+/* Styles for the status text and user email */
 .status .status-text {
     font-size: 20px;
     font-family: Arial, sans-serif;
@@ -9,20 +10,76 @@
     opacity: 0.7;
 }
 
+/* Styles for the status divs */
 .status {
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 10px;
 }
 
-.public {
-    background-color: #fff;
-}
-
 .private {
     background-color: #f1f1f1;
 }
 
-.private + .public {
-    border-top: 1px dashed #ccc;
+/* Styles for the welcome message and logout button */
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.header h1 {
+    margin: 0;
+    float: left;
+}
+
+.header form {
+    float: right;
+}
+
+/* Styles for the new post form */
+.new-post {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.new-post label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.new-post input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.new-post input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.new-post input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Styles for the content container */
+.content-container {
+    overflow: hidden;
+}
+
+/* Style for left and right columns */
+.left-column {
+    width: 40%;
+    float: left;
+}
+
+.right-column {
+    width: 40%;
+    float: right;
 }
