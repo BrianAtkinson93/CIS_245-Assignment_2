@@ -31,34 +31,47 @@ $public_statuses_result = mysqli_query($conn, $public_statuses_query);
     <title>Assignment_3</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<?php
-if (mysqli_num_rows($public_statuses_result) == 0) {
-    echo '<p>No public statuses to show. Please log in.</p>';
-}
-?>
+<header class="header">
+    <h1>Assignment 3</h1>
+    <?php
+    if (isset($_SESSION['user_email'])) {
+        echo '<form action="stubs/logout.php" method="post">';
+        echo '<p>Welcome, ' . $_SESSION['user_email'] . '!</p>';
+        echo '<input type="submit" name="logout" value="Log-Out">';
+        echo '</form>';
+    } else {
+        echo '<form action="stubs/logging.php" method="post">';
+        echo '<label for="email">Email:</label>';
+        echo '<input type="email" id="email" name="email" required>';
+        echo '<label for="password">Password:</label>';
+        echo '<input type="password" id="password" name="password" required>';
+        echo '<input type="submit" name="submit" value="Log-In">';
+        echo '</form>';
+    }
+    ?>
+</header>
 
-<form action="stubs/logging.php" method="post">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    <input type="submit" name="submit" value="Log-In">
-</form>
-
-<h2>Public Statuses:</h2>
-
-<?php
-while ($row = mysqli_fetch_assoc($public_statuses_result)) {
-    echo '<div class="status">';
-    echo '<p class="status-text">' . $row['status_text'] . '</p>';
-    echo '<p class="user-email">Posted By: ' . $row['user_email'] . '</p>';
-    echo '</div>';
-}
-
-mysqli_close($conn);
-?>
+<div class="content-container">
+    <div class="left-column">
+        <h2>Public Statuses:</h2>
+        <?php
+        if (mysqli_num_rows($public_statuses_result) == 0) {
+            echo '<p>No public statuses to show. Please log in.</p>';
+        } else {
+            while ($row = mysqli_fetch_assoc($public_statuses_result)) {
+                echo '<div class="status">';
+                echo '<p class="status-text">' . $row['status_text'] . '</p>';
+                echo '<p class="user-email">Posted By: ' . $row['user_email'] . '</p>';
+                echo '</div>';
+            }
+        }
+        ?>
+    </div>
+</div>
 
 </body>
+
 </html>

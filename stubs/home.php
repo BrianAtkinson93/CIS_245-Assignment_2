@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Social Network</title>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Page Title</title>
+    <meta name="description" content="Assignment_2">
+    <meta name="keywords" content="CIS, Assignment_2, Brian, Atkinson, UFV">
+    <meta name="author" content="Brian Atkinson">
+    <link rel="stylesheet" href="../css/style.css">
+<!--    <link rel="icon" href="path/to/favicon.ico">-->
 </head>
 <body>
 
