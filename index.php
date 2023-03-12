@@ -1,7 +1,7 @@
 <?php
 
 // import functions.php
-require_once('functions.php');
+require_once('stubs/functions.php');
 
 session_start();
 if (isset($_SESSION['user_email'])) {
@@ -39,7 +39,7 @@ if (mysqli_num_rows($public_statuses_result) == 0) {
 }
 ?>
 
-<form action="logging.php" method="post">
+<form action="stubs/logging.php" method="post">
     <label for="email">Email:</label>
     <input type="email" id="email" name="email" required>
     <label for="password">Password:</label>

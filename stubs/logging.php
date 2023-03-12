@@ -43,7 +43,7 @@ $public_statuses_result = mysqli_query($conn, $public_statuses_query);
 <head>
     <meta charset="UTF-8">
     <title>Assignment_3</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
