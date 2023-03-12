@@ -50,9 +50,8 @@ if (isset($_SESSION['user_email'])) {
     $timeline_query = "SELECT * FROM status WHERE user_email='$user_email'";
     $timeline_result = mysqli_query($conn, $timeline_query);
     while ($row = mysqli_fetch_assoc($timeline_result)) {
-        echo "<div class='status'>";
+        echo "<div class='status " . ($row['status_privacy'] ? "private" : "public") . "'>";
         echo "<p class='status-text'>" . $row['status_text'] . "</p>";
-        echo "<p class='status-privacy'>" . ($row['status_privacy'] ? "Public" : "Private") . "</p>";
         echo "</div>";
     }
 
@@ -61,6 +60,6 @@ if (isset($_SESSION['user_email'])) {
 
 } else {
     // User is not logged in, redirect to the login page
-    header("Location: logging.php");
+    header("Location: index.php");
     exit();
 }

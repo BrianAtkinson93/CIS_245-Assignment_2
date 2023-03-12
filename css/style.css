@@ -8,3 +8,21 @@
     font-family: Helvetica, sans-serif;
     opacity: 0.7;
 }
+
+.status {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.public {
+    background-color: #fff;
+}
+
+.private {
+    background-color: #f1f1f1;
+}
+
+.private + .public {
+    border-top: 1px dashed #ccc;
+}
